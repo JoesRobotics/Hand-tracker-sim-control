@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Hand Controller</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <h1>Hand Controller</h1>
+      <p>Live wrist pose &amp; pinch state from MediaPipe Hands</p>
+    </header>
+
+    <main class="app-main">
+      <section class="card card-main">
+        <div class="card-section">
+          <div class="metric-row">
+            <span class="label">Active hand</span>
+            <span id="hand" class="value value-pill">none</span>
+          </div>
+
+          <div class="metric-row">
+            <span class="label">Wrist position</span>
+            <span id="wrist" class="value monospace">(-, -, -)</span>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <div class="metric-row">
+            <span class="label">Pinch distance</span>
+            <span id="dist" class="value monospace">-</span>
+          </div>
+          <div class="metric-row">
+            <span class="label">Pinch angle</span>
+            <span id="ang" class="value monospace">-</span>
+          </div>
+          <div class="metric-row">
+            <span class="label">Progress</span>
+            <span id="prog-text" class="value monospace">-</span>
+          </div>
+
+          <div class="progress-bar-wrap">
+            <div id="prog-bar" class="progress-bar-fill"></div>
+          </div>
+
+          <div class="metric-row">
+            <span class="label">State</span>
+            <span id="pstate" class="value value-pill">NO HAND</span>
+          </div>
+        </div>
+
+        <div class="card-section card-section--controls">
+          <div class="control-group">
+            <span class="label">Threshold</span>
+            <input id="threshold" type="range" min="0" max="1" step="0.01" value="0.5" />
+            <span id="thresh-value" class="value monospace">0.50</span>
+          </div>
+
+          <div class="button-row">
+            <button id="btn-open" class="btn btn-secondary">
+              Set Open Pose
+            </button>
+            <button id="btn-closed" class="btn btn-primary">
+              Set Closed Pose
+            </button>
+          </div>
+
+          <p class="hint">
+            1) Move thumb/index to fully open, click <strong>Set Open Pose</strong>.<br/>
+            2) Move to fully pinched, click <strong>Set Closed Pose</strong>.<br/>
+            3) Adjust threshold and watch state flip between OPEN/CLOSED.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span class="status-dot" id="conn-dot"></span>
+      <span id="conn-status">Connecting...</span>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
